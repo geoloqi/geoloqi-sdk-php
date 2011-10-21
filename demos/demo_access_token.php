@@ -1,19 +1,27 @@
-<?php
+<html>
+  <head>
+    <title>Geoloqi PHP SDK Access Token Example</title>
+  </head>
+  <body>
+    <pre><?php
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+        require('../Geoloqi.php');
 
-require('../Geoloqi.php');
+        $geoloqi = Geoloqi::createWithAccessToken('YOUR ACCESS TOKEN GOES HERE');
 
-$geoloqi = GeoloqiSession::createWithAccessToken('YOUR ACCESS TOKEN GOES HERE');
+        $response = $geoloqi->get('account/profile');
 
-$response = $geoloqi->get('account/profile');
+        echo("Response for GET account/profile:\n\n");
 
-echo("Response for GET account/profile:<br>");
-htmlspecialchars(print_r($response));
+        print_r($response);
 
-echo("<br><br>Response for POST account/profile:<br>");
+        echo("\nResponse for POST account/profile:\n\n");
 
-$response = $geoloqi->post('account/profile', array('website' => 'http://limpbizkitfanclub.net'));
-print_r($response);
-?>
+        $response = $geoloqi->post('account/profile', array('website' => 'http://example.org/my_cool_site'));
+        print_r($response);
+      ?>
+    </pre>
+  </body>
+</html>

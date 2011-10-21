@@ -1,6 +1,6 @@
 <?php
 
-class GeoloqiSession {
+class Geoloqi {
 	const VERSION = '1.0.0';
 	const API_URL = 'https://api.geoloqi.com/1/';
 	const OAUTH_URL = 'https://geoloqi.com/oauth/authorize';
@@ -32,7 +32,7 @@ class GeoloqiSession {
 
 	public function execute($method, $path, $args=null, $headers=array()) {
 		if($this->accessToken() !== null) {
-			$headers[] = 'Authorization: OAuth '.$this->auth['access_token'];
+			$headers[] = 'Authorization: OAuth '.$this->auth->access_token;
 		}
 
 		$response = $this->executeLowLevel($method, $path, $args, $headers);
@@ -49,8 +49,6 @@ class GeoloqiSession {
 
 		$headers = array_merge($defaultHeaders, $headers);
 
-		print_r($headers);
-
     curl_setopt($ch, CURLOPT_URL, self::API_URL.$path);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
@@ -66,8 +64,16 @@ class GeoloqiSession {
 		return $response;
 	}
 
+  public function isLoggedIn() {
+    return(isset($this->auth->access_token));
+  }
+
 	public function accessToken() {
-		return $this->auth['access_token'];
+	  if(isset($this->auth->access_token)) {
+		  return $this->auth->access_token;
+	  } else {
+		  return null;
+		}
 	}
 
 	public function login($args=array()) {
@@ -88,7 +94,13 @@ class GeoloqiSession {
 	}
 
 	public function getAuthWithCode($code) {
-		return $this->establish(array('grant_type' => 'authorization_code', 'code' => $code, 'redirect_uri' => $this->redirectURI));
+		$auth = $this->establish(array('grant_type' => 'authorization_code',
+		                               'client_id' => $this->clientID,
+		                               'client_secret' => $this->clientSecret,
+		                               'code' => $code,
+		                               'redirect_uri' => $this->redirectURI));
+		$this->auth = $auth;
+		return $this->auth;
 	}
 
 	public function auth() {
@@ -97,6 +109,10 @@ class GeoloqiSession {
 
 	public function setAuth($auth) {
 		$this->auth = $auth;
+	}
+	
+	public function logout() {
+	  $this->auth = null;
 	}
 }
 

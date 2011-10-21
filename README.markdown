@@ -31,9 +31,7 @@ Getting started is really easy. All you need is an Access Token, which you can g
 
     ?>
 
-For an OAuth2 application, go to the [Geoloqi Developers Site](https://developers.geoloqi.com/getting-started) and create an application! Then you can use it like this:
-
-
+For an OAuth2 application, go to the [Geoloqi Developers Site](https://developers.geoloqi.com/getting-started) and create an application! Then take a look at the example file in demos/demo_oauth.php, which will get you started.
 
 Found a bug?
 ---
