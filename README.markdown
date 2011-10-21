@@ -31,6 +31,10 @@ Getting started is really easy. All you need is an Access Token, which you can g
 
     ?>
 
+For an OAuth2 application, go to the [Geoloqi Developers Site](https://developers.geoloqi.com/getting-started) and create an application! Then you can use it like this:
+
+
+
 Found a bug?
 ---
 Let us know! Send a pull request or a patch. Questions? Ask! We're here to help. File issues, we'll respond to them!
