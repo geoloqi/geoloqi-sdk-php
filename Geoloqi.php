@@ -42,7 +42,7 @@ class Geoloqi {
 		} else {
 			$headers = $defaultHeaders;
 		}
-		
+
     curl_setopt($ch, CURLOPT_URL, self::API_URL.$path);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
