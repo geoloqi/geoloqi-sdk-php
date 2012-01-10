@@ -25,7 +25,7 @@ Getting started is really easy. All you need is an Access Token, which you can g
 
     echo("<br><br>Response for POST account/profile:<br>");
 
-    $response = $geoloqi->post('account/profile', array('website' => 'http://limpbizkit4lyfe.net'));
+    $response = $geoloqi->post('account/profile', array('website' => 'http://yourwebsite.com'));
 
     print_r($response);
 
