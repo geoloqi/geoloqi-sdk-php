@@ -12,7 +12,9 @@ class Geoloqi {
 	private $auth;
 
 	public static function createWithAccessToken($accessToken) {
-		return new self(null, null, null, array('access_token' => $accessToken));
+                $auth = new StdClass;
+                $auth->access_token = $accessToken;
+                return new self(null, null, null, $auth);
 	}
 
 	public function __construct($clientID, $clientSecret, $redirectURI, $auth=null) {
