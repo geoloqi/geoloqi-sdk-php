@@ -56,7 +56,7 @@ class Geoloqi {
 
 		if($method === 'POST') {
 			curl_setopt($ch, CURLOPT_POST, TRUE);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($args));
+			curl_setopt($ch, CURLOPT_POSTFIELDS, ($args ? json_encode($args) : ''));
 		}
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
