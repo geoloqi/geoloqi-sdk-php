@@ -1,7 +1,7 @@
 <?php
 
 class Geoloqi {
-	const VERSION = '1.0.0';
+	const VERSION = '1.1.0';
 	const API_URL = 'https://api.geoloqi.com/1/';
 	const OAUTH_URL = 'https://geoloqi.com/oauth/authorize';
 
@@ -63,7 +63,7 @@ class Geoloqi {
             }
         }
 
-        curl_setopt($ch, CURLOPT_URL, self::API_URL.$path);
+    curl_setopt($ch, CURLOPT_URL, self::API_URL.$path);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
     $response = curl_exec($ch);
@@ -117,7 +117,7 @@ class Geoloqi {
 	public function setAuth($auth) {
 		$this->auth = $auth;
 	}
-	
+
 	public function logout() {
 	  $this->auth = null;
 	}

@@ -23,6 +23,12 @@ Getting started is really easy. All you need is an Access Token, which you can g
 
     print_r($response);
 
+    echo("<br><br>Get last 5 locations:<br>");
+
+    $response = $geoloqi->get('location/history', array('count' => 5));
+
+    print_r($response);
+
     echo("<br><br>Response for POST account/profile:<br>");
 
     $response = $geoloqi->post('account/profile', array('website' => 'http://yourwebsite.com'));

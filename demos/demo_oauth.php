@@ -6,8 +6,8 @@
 
   require('../Geoloqi.php');
 
-  $geoloqi = new Geoloqi('YOUR APP CLIENT ID GOES HERE', 
-                         'YOUR APP CLIENT SECRET GOES HERE', 
+  $geoloqi = new Geoloqi('YOUR APP CLIENT ID GOES HERE',
+                         'YOUR APP CLIENT SECRET GOES HERE',
                          'YOUR APP REDIRECT URI GOES HERE');
 
   $name = 'geoloqi_auth';
@@ -39,15 +39,15 @@
   <body>
     <?php
       if($geoloqi->isLoggedIn()) {
-        
+
         echo 'You are logged in! Your account profile is:';
         echo '<pre>';
-        
+
         $result = $geoloqi->get('account/profile');
 
         print_r($result);
         echo '</pre>';
-        
+
         echo '<a href="demo_oauth.php?page=logout">Log Out</a>';
       } else {
         echo '<a href="demo_oauth.php?page=login">Log In</a>';
