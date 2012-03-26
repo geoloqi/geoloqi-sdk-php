@@ -51,14 +51,19 @@ class Geoloqi {
 
 		$headers = array_merge($defaultHeaders, $headers);
 
-    curl_setopt($ch, CURLOPT_URL, self::API_URL.$path);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
 		if($method === 'POST') {
 			curl_setopt($ch, CURLOPT_POST, TRUE);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, ($args ? json_encode($args) : ''));
-		}
+		} else if ($method === 'GET') {
+            if (is_array($args)
+            &&  count($args) > 0) {
+                $path .= '?' . http_build_query($args);
+            }
+        }
 
+        curl_setopt($ch, CURLOPT_URL, self::API_URL.$path);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
     $response = curl_exec($ch);
