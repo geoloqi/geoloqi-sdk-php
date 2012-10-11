@@ -9,35 +9,29 @@ Requirements
 
 Usage
 ---
-Getting started is really easy. All you need is an Access Token, which you can get from the [Geoloqi Developers Site](https://developers.geoloqi.com/getting-started):
+Getting started is really easy. All you need is an application access token, which you can get from the [Geoloqi Developers Site](https://developers.geoloqi.com/account/applications):
 
     <?php
 
     include('Geoloqi.php');
 
-    $geoloqi = Geoloqi::createWithAccessToken('YOUR ACCESS TOKEN GOES HERE');
+    $geoloqi = Geoloqi::createWithAccessToken('YOUR_APPLICATION_ACCESS_TOKEN');
 
-    $response = $geoloqi->get('account/profile');
+    $response = $geoloqi->post('trigger/create', array(
+      'key'        => 'powells_books',
+      'type'       => 'message',
+      'latitude'   => 45.523334,
+      'longitude'  => -122.681612,
+      'radius'     => 150,
+      'text'       => 'Welcome to Powell\'s Books!',
+      'place_name' => 'Powell\'s Books'
+    ));
 
-    echo("Response for GET account/profile:<br>");
-
-    print_r($response);
-
-    echo("<br><br>Get last 5 locations:<br>");
-
-    $response = $geoloqi->get('location/history', array('count' => 5));
-
-    print_r($response);
-
-    echo("<br><br>Response for POST account/profile:<br>");
-
-    $response = $geoloqi->post('account/profile', array('website' => 'http://yourwebsite.com'));
+    echo("Response for POST trigger/create:<br>");
 
     print_r($response);
 
     ?>
-
-For an OAuth2 application, go to the [Geoloqi Developers Site](https://developers.geoloqi.com/getting-started) and create an application! Then take a look at the example file in demos/demo_oauth.php, which will get you started.
 
 Found a bug?
 ---
